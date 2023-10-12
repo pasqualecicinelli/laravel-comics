@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Composer;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    $title = 'Laravel Comics';
+    return view('home', compact('title'));
+})->name('home');
+
+Route::get('comics', function () {
+    $comics_list = config('comics');
+    $title = 'Current series';
+    return view('comics', compact('title', 'comics_list'));
+})->name('comics');
